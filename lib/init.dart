@@ -43,13 +43,19 @@ class Req {
     }
   }
 
-  Future<HttpClientResponse> get(Uri url, {Map<String, String>? headers}) =>
+  Future<HttpClientResponse> getUri(Uri url, {Map<String, String>? headers}) =>
       _req(http.getUrl(url), headers);
 
-  Future<HttpClientResponse> post(Uri url,
+  Future<HttpClientResponse> get(String url, {Map<String, String>? headers}) =>
+      _req(http.getUrl(Uri.parse(url)), headers);
+
+  Future<HttpClientResponse> post(String url,
+          {String? body, Map<String, String>? headers}) =>
+      postUri(Uri.parse(url), body: body, headers: headers);
+
+  Future<HttpClientResponse> postUri(Uri url,
       {String? body, Map<String, String>? headers}) async {
     final req = await http.postUrl(url);
-
     return _req(req, headers, body: body);
   }
 }
