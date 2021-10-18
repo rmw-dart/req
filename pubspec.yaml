@@ -1,0 +1,12 @@
+name: req
+description: http get or post with timeout ( default 60 seconds )
+version: 1.0.0
+homepage: https://github.com/rmw-dart/req
+
+environment:
+  sdk: '>=2.14.3 <3.0.0'
+
+dev_dependencies:
+  lints: ^1.0.0
+  test: ^1.16.0
+
