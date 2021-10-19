@@ -1,18 +1,16 @@
+library req;
+
 import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 
-Future<String> read(HttpClientResponse response, Encoding encoding) async {
-  final contents = StringBuffer();
-  await for (var data in response.transform(encoding.decoder)) {
-    contents.write(data);
-  }
-  return contents.toString();
-}
-
 extension HttpClientResponseText on HttpClientResponse {
-  Future<String> text({Encoding encoding = utf8}) {
-    return read(this, encoding);
+  Future<String> text({Encoding encoding = utf8}) async {
+    final contents = StringBuffer();
+    await for (var data in transform(encoding.decoder)) {
+      contents.write(data);
+    }
+    return contents.toString();
   }
 }
 
